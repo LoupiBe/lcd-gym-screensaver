@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCD Gym Screensaver - Anti-Marquage & Dépolarisation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Arrière-plan de dépolarisation (Barres animées ou Aplats RVB/N&B) -->
+    <div id="canvas-stage" class="mode-bars"></div>
+
+    <!-- Texte en couleurs 100% inversées (mix-blend-mode: difference) -->
+    <div id="text-overlay">
+        <div id="gym-message">Je fais ma gym après un bon café</div>
+        <div id="gym-subtitle">Maintenance préventive de l'écran — Mise en veille dans 10 min</div>
+    </div>
+
+    <!-- HUD de test interactif (Appuyer sur 'H' pour afficher/masquer) -->
+    <div id="test-hud">
+        <div class="hud-title">🛠️ LCD Gym - Test HUD</div>
+        <div class="hud-stat">État : <span id="hud-status">ACTIF</span></div>
+        <div class="hud-stat">Temps : <span id="hud-time">0s / 600s</span></div>
+        <div class="hud-stat">Phase : <span id="hud-phase">Barres</span></div>
+        <div class="hud-stat">Vitesse : <span id="hud-speed">1x</span></div>
+        <div class="hud-shortcuts">
+            Raccourcis :<br>
+            • <b>[Espace]</b> : Pause / Reprise<br>
+            • <b>[B]</b> / <b>[S]</b> : Forcer Barres / Aplat<br>
+            • <b>[N]</b> : Sauter position & message<br>
+            • <b>[->]</b> : Avancer de 30s<br>
+            • <b>[F]</b> : Plein écran<br>
+            • <b>[H]</b> : Masquer ce HUD<br>
+            • <b>[R]</b> : Redémarrer
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="screensaver.js"></script>
+</body>
+</html>

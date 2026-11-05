@@ -1,0 +1,151 @@
+/* ==========================================================================
+   LCD Gym Screensaver - Styles
+   Anti-marquage et dépolarisation des cristaux liquides
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    cursor: none; /* Masque le curseur par défaut sur les kiosques */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* En mode test / interactif, on réactive le curseur quand la souris bouge */
+body.interactive {
+    cursor: default;
+}
+
+/* --------------------------------------------------------------------------
+   Couche d'arrière-plan principale
+   -------------------------------------------------------------------------- */
+#canvas-stage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    transition: background-color 0.2s ease;
+}
+
+/* Mode Barres : Balayage continu haute fréquence (30s) */
+#canvas-stage.mode-bars {
+    background: repeating-linear-gradient(
+        90deg,
+        #FFFFFF 0vw, #FFFFFF 20vw,
+        #000000 20vw, #000000 40vw,
+        #FF0000 40vw, #FF0000 60vw,
+        #00FF00 60vw, #00FF00 80vw,
+        #0000FF 80vw, #00FF00 100vw
+    );
+    background-size: 200vw 100vh;
+    animation: sweepBars 4s linear infinite;
+    will-change: background-position;
+}
+
+@keyframes sweepBars {
+    0% {
+        background-position: 0vw 0;
+    }
+    100% {
+        background-position: -100vw 0;
+    }
+}
+
+/* Mode Aplats : Couleurs pures successives (30s) */
+#canvas-stage.mode-solid {
+    animation: none;
+}
+
+/* Mode Terminé : Écran noir pur */
+#canvas-stage.mode-finished {
+    background-color: #000000 !important;
+    animation: none;
+}
+
+/* --------------------------------------------------------------------------
+   Couche de Texte en Couleurs 100% Inversées (mix-blend-mode: difference)
+   -------------------------------------------------------------------------- */
+#text-overlay {
+    position: absolute;
+    z-index: 10;
+    color: #FFFFFF;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    padding: 1.5rem 2.5rem;
+    max-width: 75vw;
+    text-shadow: none; /* Pas d'ombre pour préserver la pureté de l'inversion optique */
+    transition: top 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 0.2s ease;
+}
+
+#gym-message {
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    word-break: break-word;
+}
+
+#gym-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    opacity: 0.95;
+    letter-spacing: 0.5px;
+}
+
+/* --------------------------------------------------------------------------
+   HUD de Test et Raccourcis (masqué par défaut en production)
+   -------------------------------------------------------------------------- */
+#test-hud {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.75);
+    color: #00FF66;
+    border: 1px solid #00FF66;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    display: none;
+    pointer-events: auto;
+    cursor: default;
+}
+
+#test-hud.visible {
+    display: block;
+}
+
+#test-hud .hud-title {
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+#test-hud .hud-stat {
+    margin: 2px 0;
+}
+
+#test-hud .hud-shortcuts {
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px dashed #444;
+    font-size: 11px;
+    color: #AAA;
+}
