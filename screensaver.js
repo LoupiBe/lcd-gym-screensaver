@@ -113,6 +113,16 @@
         });
         window.dispatchEvent(finishEvent);
 
+        // Notification de la fenêtre parente si intégrée dans une iframe
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'lcd-gym-finished',
+                totalDuration,
+                elapsedSeconds,
+                timestamp: new Date().toISOString()
+            }, '*');
+        }
+
         if (autoExit) {
             setTimeout(() => {
                 window.close();
