@@ -32,7 +32,7 @@ Totalement indépendant de toute pile applicative (zéro dépendance Node.js/npm
 Un script de test local interactif est fourni :
 
 ```bash
-cd /home/loupi/Documents/Dev/lcd-gym-screensaver
+cd lcd-gym-screensaver
 ./test-local.sh
 ```
 
