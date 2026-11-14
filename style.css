@@ -7,6 +7,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    cursor: none !important;
 }
 
 html, body {
@@ -15,14 +16,9 @@ html, body {
     overflow: hidden;
     background-color: #000000;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    cursor: none; /* Masque le curseur par défaut sur les kiosques */
+    cursor: none !important; /* Masque le curseur par défaut sur les kiosques */
     user-select: none;
     -webkit-user-select: none;
-}
-
-/* En mode test / interactif, on réactive le curseur quand la souris bouge */
-body.interactive {
-    cursor: default;
 }
 
 /* --------------------------------------------------------------------------

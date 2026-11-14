@@ -43,7 +43,7 @@ case "$MODE" in
         echo "Mode sélectionné    : PLEIN ÉCRAN KIOSK (10 minutes)"
         URL="file://$INDEX_FILE?duration=600&speed=1"
         if [ "$BROWSER" = "chromium" ] || [ "$BROWSER" = "google-chrome" ] || [ "$BROWSER" = "chromium-browser" ]; then
-            exec "$BROWSER" --kiosk --noerrdialogs --disable-infobars --disable-sync --disable-background-networking --log-level=3 "$URL"
+            exec "$BROWSER" --kiosk --noerrdialogs --disable-infobars --disable-sync --disable-background-networking --disable-features=Translate --log-level=3 "$URL"
         fi
         ;;
     *)
@@ -70,7 +70,7 @@ echo "Ouverture : $URL"
 
 if [ "$BROWSER" = "chromium" ] || [ "$BROWSER" = "google-chrome" ] || [ "$BROWSER" = "chromium-browser" ]; then
     # Ouvre dans une fenêtre applicative propre sans barre d'adresse et sans bruit de log
-    "$BROWSER" --app="$URL" --disable-sync --disable-background-networking --log-level=3 >/dev/null 2>&1 &
+    "$BROWSER" --app="$URL" --disable-sync --disable-background-networking --disable-features=Translate --log-level=3 >/dev/null 2>&1 &
 else
     "$BROWSER" "$URL" >/dev/null 2>&1 &
 fi

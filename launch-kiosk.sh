@@ -31,6 +31,7 @@ CHROME_FLAGS=(
     "--hide-scrollbars"
     "--disable-sync"
     "--disable-background-networking"
+    "--disable-features=Translate"
     "--log-level=3"
     "--enable-features=UseOzonePlatform"
     "--ozone-platform=wayland"

@@ -236,16 +236,4 @@
         }
     });
 
-    // Masquage automatique du curseur après inactivité de la souris
-    let cursorTimer = null;
-    window.addEventListener('mousemove', () => {
-        document.body.classList.add('interactive');
-        clearTimeout(cursorTimer);
-        cursorTimer = setTimeout(() => {
-            if (!hudEl.classList.contains('visible')) {
-                document.body.classList.remove('interactive');
-            }
-        }, 2000);
-    });
-
 })();
