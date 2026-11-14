@@ -8,6 +8,17 @@ set -e
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 INDEX_URI="file://$DIR/index.html?duration=600&autoexit=1"
 
+# S'assurer que XDG_RUNTIME_DIR est défini (ex: lancement manuel via SSH)
+if [ -z "${XDG_RUNTIME_DIR:-}" ]; then
+    if [ -d "/run/user/$(id -u)" ] && [ -w "/run/user/$(id -u)" ]; then
+        export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    else
+        export XDG_RUNTIME_DIR="/tmp/xdg-runtime-$(id -u)"
+        mkdir -p "$XDG_RUNTIME_DIR"
+        chmod 700 "$XDG_RUNTIME_DIR"
+    fi
+fi
+
 # Détection de Chromium
 CHROME_BIN=""
 for b in /usr/bin/chromium-browser /usr/bin/chromium /snap/bin/chromium; do
